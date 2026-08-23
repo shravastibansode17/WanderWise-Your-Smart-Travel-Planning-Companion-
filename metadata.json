@@ -1,0 +1,6 @@
+{
+  "name": "WanderWise",
+  "description": "Your Smart Travel Planning Companion - discover destinations, compare travel options, build personalized itineraries, and estimate trip budgets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
