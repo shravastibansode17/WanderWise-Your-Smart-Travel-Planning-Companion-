@@ -58,9 +58,16 @@ export default function App() {
     storage.saveChecklist(checklistItems);
   }, [checklistItems]);
 
-  // Track initial page view
+  // Track initial page view and tab switches
   useEffect(() => {
-    analytics.track('page_view', { page: activePage });
+    const pageTitle = `WanderWise — ${activePage.charAt(0).toUpperCase() + activePage.slice(1)}`;
+    document.title = `${pageTitle} | Smart Travel Planning Companion`;
+    analytics.track('page_view', {
+      page: activePage,
+      page_title: pageTitle,
+      page_path: `/${activePage}`,
+      page_location: window.location.href,
+    });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activePage]);
 

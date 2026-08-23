@@ -1,5 +1,7 @@
 import { AnalyticsEvent } from '../types';
 
+export const GA_MEASUREMENT_ID = 'G-GH1193N4D9';
+
 type EventListener = (event: AnalyticsEvent) => void;
 
 class AnalyticsManager {
@@ -30,10 +32,23 @@ class AnalyticsManager {
       this.events = this.events.slice(0, this.maxHistory);
     }
 
-    // Google Tag Manager / gtag.js simulation and push
+    // Google Tag Manager / gtag.js dispatch
     if (typeof window !== 'undefined' && (window as any).gtag) {
       try {
-        (window as any).gtag('event', eventName, params);
+        if (eventName === 'page_view') {
+          (window as any).gtag('event', 'page_view', {
+            page_title: params.page_title || document.title,
+            page_location: params.page_location || window.location.href,
+            page_path: params.page_path || window.location.pathname,
+            send_to: GA_MEASUREMENT_ID,
+            ...params,
+          });
+        } else {
+          (window as any).gtag('event', eventName, {
+            send_to: GA_MEASUREMENT_ID,
+            ...params,
+          });
+        }
       } catch (err) {
         console.debug('gtag call:', err);
       }
@@ -46,8 +61,8 @@ class AnalyticsManager {
       });
     }
 
-    // Log to console for development audit
-    console.log(`%c[GA4 Tracked] %c${eventName}`, 'color: #0E4B5B; font-weight: bold;', 'color: #FF6B35; font-weight: 600;', params);
+    // Log to console for audit
+    console.log(`%c[GA4 Tracked (${GA_MEASUREMENT_ID})] %c${eventName}`, 'color: #0E4B5B; font-weight: bold;', 'color: #FF6B35; font-weight: 600;', params);
 
     // Notify listeners
     this.listeners.forEach((listener) => listener(event));

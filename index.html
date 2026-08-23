@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GH1193N4D9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GH1193N4D9', {
+        send_page_view: false // Managed via SPA routing events
+      });
+    </script>
     <title>WanderWise — Your Smart Travel Planning Companion</title>
     <meta name="description" content="Discover destinations, compare travel options, build personalized itineraries, and estimate trip budgets." />
     <meta property="og:title" content="WanderWise — Your Smart Travel Planning Companion" />

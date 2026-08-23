@@ -57,7 +57,7 @@ export const AnalyticsMonitor: React.FC<AnalyticsMonitorProps> = ({ isOpen, onCl
       <div className="px-4 py-2.5 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between text-xs text-emerald-800">
         <span className="flex items-center gap-1.5 font-medium">
           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-          GA4 Tag Ready (gtag.js / dataLayer)
+          GA4 Tag (G-GH1193N4D9) Active
         </span>
         <span className="bg-emerald-200/80 px-2 py-0.5 rounded-full text-[11px] font-semibold">
           {events.length} tracked events
